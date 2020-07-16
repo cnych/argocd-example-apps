@@ -1,0 +1,19 @@
+# argocd-cdk8s-plugin-config.yml
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  annotations:
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+  name: argocd-cm
+  namespace: argocd
+data:
+  configManagementPlugins: |
+    - name: cdk8s # 插件名称，后面会引用它
+      init: # 一些预处理命令
+        command: ["bash"]
+        args: ["-c", "pipenv install && cdk8s import -l python && cdk8s synth"] # 保证依赖安装执行 cdk8s synth 命令生成资源清单
+      generate: # 将该命令的输出结果部署到集群中
+        command: ["bash"]
+        args: ["-c", "cat dist/*"] # 打印生成的 Kubernetes 资源清单文件
