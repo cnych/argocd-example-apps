@@ -2,6 +2,8 @@
 from constructs import Construct
 from cdk8s import App, Chart
 
+from imports import k8s
+
 
 class MyChart(Chart):
     def __init__(self, scope: Construct, ns: str):
