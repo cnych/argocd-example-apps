@@ -9,6 +9,19 @@ metadata:
   name: argocd-cm
   namespace: argocd
 data:
+  application.instanceLabelKey: argocd.argoproj.io/instance
+  repositories: |
+    - insecure: true
+      insecureIgnoreHostKey: true
+      passwordSecret:
+        key: password
+        name: repo-2527257617
+      type: git
+      url: http://git.k8s.local/course/gitops-webapp.git
+      usernameSecret:
+        key: username
+        name: repo-2527257617
+  url: https://argocd.k8s.local/
   configManagementPlugins: |
     - name: cdk8s # 插件名称，后面会引用它
       init: # 一些预处理命令

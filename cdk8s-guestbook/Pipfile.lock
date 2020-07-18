@@ -10,8 +10,8 @@
         "sources": [
             {
                 "name": "pypi",
-                "url": "https://pypi.org/simple",
-                "verify_ssl": true
+                "url": "http://mirrors.aliyun.com/pypi/simple",
+                "verify_ssl": false
             }
         ]
     },
