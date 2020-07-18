@@ -21,7 +21,7 @@ class MyChart(Chart):
         # 定义 Deployment 对象
         k8s.Deployment(self, 'deployment',
                        spec=k8s.DeploymentSpec(
-                         replicas=1,
+                         replicas=2,
                          selector=k8s.LabelSelector(match_labels=label),
                          template=k8s.PodTemplateSpec(
                            metadata=k8s.ObjectMeta(labels=label),
